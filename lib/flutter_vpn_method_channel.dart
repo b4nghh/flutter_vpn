@@ -32,8 +32,9 @@ class MethodChannelFlutterVpn extends FlutterVpnPlatform {
   /// Can only be listened once. If have more than one subscription, only the
   /// last subscription can receive events.
   @override
-  Stream<FlutterVpnState> get onStateChanged =>
-      eventChannel.receiveBroadcastStream().map((e) => FlutterVpnState.values[e]);
+  Stream<FlutterVpnState> get onStateChanged => eventChannel
+      .receiveBroadcastStream()
+      .map((e) => FlutterVpnState.values[e]);
 
   /// Get current state.
   @override
@@ -90,6 +91,7 @@ class MethodChannelFlutterVpn extends FlutterVpnPlatform {
     required String server,
     required String username,
     required String password,
+    String? certificateString,
     String? name,
     int? mtu,
     int? port,
@@ -99,6 +101,7 @@ class MethodChannelFlutterVpn extends FlutterVpnPlatform {
         'Server': server,
         'Username': username,
         'Password': password,
+        'CertificateString': certificateString,
         'Secret': '',
         'Name': name ?? server,
         if (mtu != null) 'mtu': mtu,
