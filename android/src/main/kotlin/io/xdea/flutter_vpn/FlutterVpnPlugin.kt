@@ -136,6 +136,7 @@ class FlutterVpnPlugin : FlutterPlugin, MethodCallHandler, ActivityAware {
                 profileInfo.putString("Username", args["Username"] as String)
                 profileInfo.putString("Password", args["Password"] as String)
                 if (args.containsKey("CertificateString")) profileInfo.putString("CertificateString", args["CertificateString"] as String)
+                if (args.containsKey("RemoteId")) profileInfo.putString("RemoteId", args["RemoteId"] as String)
                 if (args.containsKey("MTU"))  profileInfo.putInt("MTU", args["MTU"] as Int)
                 if (args.containsKey("port")) profileInfo.putInt("Port", args["Port"] as Int)
 

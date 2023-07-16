@@ -163,7 +163,7 @@ public class CharonVpnService extends VpnService implements Runnable, VpnStateSe
 					profile.setUsername(bundle.getString("Username"));
 					profile.setPassword(bundle.getString("Password"));
 					profile.setLocalId(bundle.getString("LocalId"));
-                    profile.setRemoteId(bundle.getString("RemoteId"));
+					profile.setRemoteId(bundle.getString("RemoteId"));
 					profile.setVpnType(VpnType.fromIdentifier(bundle.getString("VpnType")));
 					profile.setCertificateString(bundle.getString("CertificateString"));
 
@@ -639,21 +639,21 @@ public class CharonVpnService extends VpnService implements Runnable, VpnStateSe
 		ArrayList<byte[]> certs = new ArrayList<byte[]>();
 		TrustedCertificateManager certman = TrustedCertificateManager.getInstance().load();
 		try {
-            String alias = this.mCurrentCertificateAlias;
-			 if (alias != null) {
-                 X509Certificate cert = certman.getCACertificateFromAlias(alias);
-                 if (cert == null) {
-                    return null;
-                 }
-                 certs.add(cert.getEncoded());
-             } else {
-                 for (X509Certificate cert : certman.getAllCACertificates().values()) {
-                    certs.add(cert.getEncoded());
-                 }
-			 }
+			String alias = this.mCurrentCertificateAlias;
+			if (alias != null) {
+				X509Certificate cert = certman.getCACertificateFromAlias(alias);
+				if (cert == null) {
+					return null;
+				}
+				certs.add(cert.getEncoded());
+			} else {
+				for (X509Certificate cert : certman.getAllCACertificates().values()) {
+					certs.add(cert.getEncoded());
+				}
+			}
 
-            String certString = this.mCurrentProfile.getCertificateString();
-            if (certString != null) {
+			String certString = this.mCurrentProfile.getCertificateString();
+			if (certString != null) {
 				try (InputStream inStream = new ByteArrayInputStream(certString.getBytes())) {
 					CertificateFactory cf = CertificateFactory.getInstance("X.509");
 					X509Certificate cert = (X509Certificate) cf.generateCertificate(inStream);
