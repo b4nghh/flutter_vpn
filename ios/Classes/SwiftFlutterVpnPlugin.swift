@@ -33,6 +33,7 @@ public class SwiftFlutterVpnPlugin: NSObject, FlutterPlugin {
           result: result,
           type: (args["Type"] as? String ?? "IKEv2"),
           server: args["Server"]! as String,
+          remoteId: args["RemoteId"] as? String,
           username: args["Username"]! as String,
           password: args["Password"]! as String,
           secret: args["Secret"] as? String,

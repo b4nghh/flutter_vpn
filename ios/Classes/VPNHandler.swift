@@ -65,6 +65,7 @@ class VpnService {
         result: FlutterResult,
         type: String,
         server: String,
+        remoteId: String?,
         username: String,
         password: String,
         secret: String?,
@@ -105,7 +106,7 @@ class VpnService {
             } else {
                 let p = NEVPNProtocolIKEv2()
                 p.username = username
-                p.remoteIdentifier = server
+                p.remoteIdentifier = remoteId ?? server
                 p.serverAddress = server
 
                 p.passwordReference = self.kcs.load(key: passwordKey)
